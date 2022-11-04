@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to Assignment #{title}
+  p Kovidh Kurra
+  button(type="button", class="btn btn-secondary", onclick="doBump()") Press Me
+  div(id="bump") 
+    i Bump the count
+  script. 
+    var count = 0;
+    var bump = 1;
+    function doBump(){
+      count = count + bump;
+      bump = bump + 1;
+      document.getElementById("bump").innerHTML="Count "+count+" with bump "+bump;
+    }
+  a(href="vehicle") Info of vehicle

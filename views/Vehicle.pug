@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{Vehicle_name:"Benz",Vehicle_Cost:100000,Vehicle_model:"320d"},{Vehicle_name:"bmw",Vehicle_Cost:60000,Vehicle_model:"720d"},{Vehicle_name:"ford",Vehicle_Cost:16000,Vehicle_model:"eco-sport"}]
+  div(class="container-fluid")
+  div(class="row")
+   each value,index in results
+    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.Vehicle_name} vehicle, costs #{value.Vehicle_Cost}, with model #{value.Vehicle_model}
+   script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }

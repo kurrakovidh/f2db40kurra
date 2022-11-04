@@ -2,9 +2,9 @@
 ## Kurra Kovidh
 ### WebApps Assignment
 
-[RenderLink](https://f2wb40kurra.onrender.com)
+[RenderLink](https://f2db40kurra.onrender.com)
 
-[RenderLink](https://dashboard.render.com/web/srv-cddn9rta499c9d02bovg)
+[RenderLink](https://dashboard.render.com/web/srv-cdij136n6mphbriger1g/deploys/dep-cdij146n6mphbrigerag)
 
 ## Class Vehicle details:
 * Vehicle

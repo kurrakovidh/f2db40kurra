@@ -3,12 +3,29 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+require('dotenv').config();
+const connectionString =
+  process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  });
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function () {
+  console.log("Connection to DB succeeded")
+});
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var VehicleRouter = require('./routes/Vehicle');
+var Vehicle = require("./models/Vehicle");
 var GridBuildRouter = require('./routes/GridBuild');
 var selectorRouter = require('./routes/selector');
+var resourceRouter = require('./routes/resource');
 var app = express();
 
 // view engine setup
@@ -26,13 +43,41 @@ app.use('/users', usersRouter);
 app.use('/Vehicle', VehicleRouter);
 app.use('/GridBuild', GridBuildRouter);
 app.use('/selector', selectorRouter);
+
+app.use('/resource',resourceRouter);
+
+// We can seed the collection if needed onserver start
+async function recreateDB() {
+  // Delete everything
+  await Vehicle.deleteMany();
+  let instance1 = new Vehicle({ Vehicle_name: "Benz", Vehicle_Cost: 60000, Vehicle_model: "720d" });
+  instance1.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("First object saved")
+  });
+
+  let instance2 = new Vehicle({ Vehicle_name: "bmw", Vehicle_Cost: 100000, Vehicle_model: "320d" });
+  instance2.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Second object saved")
+  });
+
+  let instance3 = new Vehicle({ Vehicle_name: "ford", Vehicle_Cost: 16000, Vehicle_model: "eco-sport" });
+  instance3.save(function (err, doc) {
+    if (err) return console.error(err);
+    console.log("Third object saved")
+  });
+}
+let reseed = true;
+if (reseed) { recreateDB(); }
+
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

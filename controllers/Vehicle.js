@@ -3,10 +3,17 @@ var Vehicle = require('../models/Vehicle');
 exports.Vehicle_list = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle list');
 };
-// for a specific Costume.
-exports.Vehicle_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: Vehicle detail: ' + req.params.id);
-};
+// for a specific Costume. 
+exports.vehicle_detail = async function(req, res) { 
+    console.log("detail"  + req.params.id) 
+    try { 
+        result = await Vehicle.findById( req.params.id) 
+        res.send(result) 
+    } catch (error) { 
+        res.status(500) 
+        res.send(`{"error": document for id ${req.params.id} not found`); 
+    } 
+}; 
 // Handle Costume create on POST.
 exports.Vehicle_create_post = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle create POST');
@@ -15,10 +22,26 @@ exports.Vehicle_create_post = function (req, res) {
 exports.Vehicle_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle delete DELETE ' + req.params.id);
 };
-// Handle Costume update form on PUT.
-exports.Vehicle_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Vehicle update PUT' + req.params.id);
-};
+// Handle Costume update form on PUT. 
+exports.Vehicle_update_put = async function(req, res) { 
+    console.log(`update on id ${req.params.id} with body 
+${JSON.stringify(req.body)}`) 
+    try { 
+        let toUpdate = await Vehicle.findById( req.params.id) 
+        // Do updates of properties 
+        if(req.body.Vehicle_name)  
+               toUpdate.Vehicle_name = req.body.Vehicle_name; 
+        if(req.body.Vehicle_Cost) toUpdate.Vehicle_Cost = req.body.Vehicle_Cost; 
+        if(req.body.Vehicle_model) toUpdate.Vehicle_model = req.body.Vehicle_model; 
+        let result = await toUpdate.save(); 
+        console.log("Sucess " + result) 
+        res.send(result) 
+    } catch (err) { 
+        res.status(500) 
+        res.send(`{"error": ${err}: Update for id ${req.params.id} 
+failed`); 
+    } 
+}; 
 // VIEWS
 
 // List of all Vehicles

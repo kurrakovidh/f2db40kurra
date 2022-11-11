@@ -1,9 +1,9 @@
 var Vehicle = require('../models/Vehicle');
-// List of all Costumes
+// List of all Vehicles
 exports.Vehicle_list = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle list');
 };
-// for a specific Costume. 
+// for a specific Vehicle. 
 exports.vehicle_detail = async function(req, res) { 
     console.log("detail"  + req.params.id) 
     try { 
@@ -14,15 +14,15 @@ exports.vehicle_detail = async function(req, res) {
         res.send(`{"error": document for id ${req.params.id} not found`); 
     } 
 }; 
-// Handle Costume create on POST.
+// Handle Vehicle create on POST.
 exports.Vehicle_create_post = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle create POST');
 };
-// Handle Costume delete form on DELETE.
+// Handle Vehicle delete form on DELETE.
 exports.Vehicle_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Vehicle delete DELETE ' + req.params.id);
 };
-// Handle Costume update form on PUT. 
+// Handle Vehicle update form on PUT. 
 exports.Vehicle_update_put = async function(req, res) { 
     console.log(`update on id ${req.params.id} with body 
 ${JSON.stringify(req.body)}`) 
@@ -67,14 +67,14 @@ exports.Vehicle_view_all_Page = async function (req, res) {
         res.send(`{"error": ${err}}`);
     }
 };
-// Handle Costume create on POST.
+// Handle Vehicle create on POST.
 exports.Vehicle_create_post = async function (req, res) {
     console.log(req.body)
     let document = new Vehicle();
     // We are looking for a body, since POST does not have query parameters.
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
-    // {"costume_type":"goat", "cost":12, "size":"large"}
+    // {"Vehicle_type":"goat", "cost":12, "size":"large"}
     document.Vehicle_name = req.body.Vehicle_name;
     document.Vehicle_Cost = req.body.Vehicle_Cost;
     document.Vehicle_model = req.body.Vehicle_model;

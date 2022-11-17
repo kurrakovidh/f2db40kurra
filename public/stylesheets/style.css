@@ -6,3 +6,24 @@ body {
 a {
   color: #00B7FF;
 }
+.VehicleAttr { 
+  background-color: aquamarine; 
+  width: 120px; 
+  background-color: #80489C; 
+  color: white;
+  height: 30px;
+}
+
+.data {
+  border-bottom: 2px solid black;
+  height: 30px;
+  color: red;
+  margin-left: 12px;
+}
+
+.detailData {
+  border-bottom: 2px solid white;
+  height: 30px;
+  color: red;
+  margin-left: 12px;
+}

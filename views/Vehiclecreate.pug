@@ -1,0 +1,48 @@
+extends layout 
+ 
+block content 
+
+    div(class='container', style='border: 2px solid #2192FF; width: 450px;')
+    h1(style="text-align: center; color: #FF1E1E")= title 
+    div.form-group 
+      div(class="form-group row mb-2") 
+        label.VehicleAttr(for='Vehicle_Cost') Vehicle cost 
+         div(class='col-6' style='width: 250px;')
+         input#cost(type='number', name='Vehicle_Cost') 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['VehicleForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 
+ 
+  script. 
+    document.forms['VehicleForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'POST', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Save succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Save failed " + error ) 
+      }); 
+    }); 

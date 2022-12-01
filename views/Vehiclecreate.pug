@@ -1,15 +1,19 @@
 extends layout 
  
 block content 
-
-    div(class='container', style='border: 2px solid #2192FF; width: 450px;')
-    h1(style="text-align: center; color: #FF1E1E")= title 
+  h1= title 
+ 
+  form(id='VehicleForm', action="/resource/Vehicles", method="POST") 
     div.form-group 
-      div(class="form-group row mb-2") 
-        label.VehicleAttr(for='Vehicle_Cost') Vehicle cost 
-         div(class='col-6' style='width: 250px;')
-         input#cost(type='number', name='Vehicle_Cost') 
-    input(type="submit") 
+        label.VehiclebonusAttr(for='Vehicle_name') Vehicle Name
+        input#Vehicle_name(type='text', name='Vehicle_name') 
+    div.form-group 
+        label.VehiclebonusAttr(for='Vehicle_Cost') Vehicle Cost
+        input#Vehicle_size(type='number', name='Vehicle_cost') 
+    div.form-group 
+        label.VehiclebonusAttr(for='Vehicle_model') Vehicle model 
+        input#Vehicle_rent(type='text', name='Vehicle_model') 
+    button(class="btn btn-danger m-2") Submit
  
   script. 
     document.forms['VehicleForm'].addEventListener('submit', (event) => { 
@@ -27,5 +31,4 @@ block content
         // TODO handle error 
         alert("Save failed " + error ) 
       }); 
-    }); 
- 
+    });

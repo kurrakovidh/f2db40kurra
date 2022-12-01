@@ -1,22 +1,24 @@
 extends layout 
  
 block content 
-  div(class='container', style='border: 2px solid #001253; width: 450px;')
-    h1(style="text-align: center; color: #54B435")= title 
- 
-  - let Vehicleid = toShow._id 
-  - let Vehicle_name = toShow.Vehicle_name  
-  - let Vehicle_Cost = toShow.Vehicle_Cost 
-  - let Vehicle_model  = toShow.Vehicle_model  
- div(class='container' style="text-align: center; width: 500px;")    div.row 
-      div(class='VehicleAttr mr-3') Vehicle ID is: 
-      div #{Vehicleid} 
-    div.row 
-      div(class='VehicleAttr mr-3') Vehicle name is: 
-      div #{Vehicle_name} 
-    div.row 
-      div(class='VehicleAttr mr-3') Vehicle model is: 
-      div #{Vehicle_model} 
-    div.row 
-      div(class='VehicleAttr mr-3') Vehicle Cost is: 
-      div #{Vehicle_Cost}
+  h1= title 
+  if (toShow == null) 
+    h2 No instance
+  else
+    - let Vehicleid = toShow._id
+    - let Vehicle_Vehicle_name = toShow.Vehicle_name
+    - let Vehicle_Vehicle_model = toShow.Vehicle_model
+    - let Vehicle_Vehicle_Cost = toShow.Vehicle_model
+    div
+      div.row
+        div(class='VehicleAttr mr-3') Vehicle ID is:
+        div #{Vehicleid}
+      div.row
+        div(class='VehicleAttr mr-3') Vehicle Type is:
+        div #{Vehicle_Vehicle_name}
+      div.row
+        div(class='VehicleAttr mr-3') Vehicle Cost is:
+        div #{Vehicle_Vehicle_Cost}
+      div.row
+        div(class='VehicleAttr mr-3') Vehicle model is:
+        div #{Vehicle_Vehicle_model}
